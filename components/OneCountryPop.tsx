@@ -1,8 +1,8 @@
 import React from 'react';
-import {useEffect, useState} from 'react';
-import {getPopulationTimeSeries} from '../lib/WorldBankAPI';
-import {View, Text, FlatList, StyleSheet} from 'react-native';
-import {PopAPIBody} from '../lib/ApiTypes';
+import { useEffect, useState } from 'react';
+import { getPopulationTimeSeries } from '../lib/WorldBankAPI';
+import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { PopAPIBody } from '../lib/ApiTypes';
 
 type Props = {
   countryCode: string;
@@ -30,7 +30,7 @@ export const OneCountryPop = (props: Props) => {
       {timeSeries.length > 0 ? <Text>{timeSeries[0]?.pages}</Text> : null}
       <FlatList
         data={timeSeries[1]}
-        renderItem={({item}) => (
+        renderItem={({ item }) => (
           <View style={Styles.TimeSeriesDataBox}>
             <Text>Date: {item.date}</Text>
             <Text>
