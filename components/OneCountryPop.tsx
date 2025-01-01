@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { getPopulationTimeSeries } from '../lib/WorldBankAPI';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 import { PopAPIBody } from '../lib/ApiTypes';
+import { createPopulationTable } from '../lib/WorldBankData';
 
 type Props = {
   countryCode: string;
@@ -13,6 +14,8 @@ type Props = {
 export const OneCountryPop = (props: Props) => {
   const [timeSeries, setTimeSeries] = useState<PopAPIBody | []>([]);
   useEffect(() => {
+    createPopulationTable();
+
     getPopulationTimeSeries(
       props.countryCode,
       props.dateBegin,
@@ -32,14 +35,18 @@ export const OneCountryPop = (props: Props) => {
         data={timeSeries[1]}
         renderItem={({ item }) => (
           <View style={Styles.TimeSeriesDataBox}>
-            <Text>Date: {item.date}</Text>
+            <Text>Country: {item.countryIso3Code}</Text>
             <Text>
               Value:{' '}
-              {isNaN(item.value) ? item.value : item.value.toLocaleString()}
+              {!item.value || isNaN(item.value)
+                ? item.value
+                : item.value.toLocaleString()}
             </Text>
           </View>
         )}
-        keyExtractor={item => `${item.country}-${item.date}`}
+        keyExtractor={(item, index) =>
+          `${item.countryIso3Code || index}-${item.date}`
+        }
       />
     </View>
   );

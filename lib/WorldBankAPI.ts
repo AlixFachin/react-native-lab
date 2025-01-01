@@ -1,6 +1,6 @@
 const API_URL = 'https://api.worldbank.org/v2';
 
-import type {PopAPIBody} from '../lib/ApiTypes';
+import type { PopAPIBody } from '../lib/ApiTypes';
 
 export const getPopulationTimeSeries: (
   countryCode: string,
