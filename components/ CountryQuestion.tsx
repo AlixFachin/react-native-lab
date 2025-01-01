@@ -19,7 +19,8 @@ export const CountryQuestion = ({ countryList, onAnswer }: Props) => {
           <TouchableOpacity
             key={country.name}
             style={styles.button}
-            onPress={() => onAnswer(country.name)}>
+            onPress={() => onAnswer(country.name)}
+            testID="country-button">
             <Text style={styles.label}>
               {country.name} ({country.population})
             </Text>
