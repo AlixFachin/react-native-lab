@@ -6,17 +6,12 @@
  */
 
 import React from 'react';
+import 'react-native-gesture-handler';
 
-import {
-  createStaticNavigation,
-  NavigationContainer,
-} from '@react-navigation/native';
-import {RootStack} from './components/RootStackNavigation';
-import {BottomTabs} from './components/BottomTabNavigation';
+import { NavigationContainer } from '@react-navigation/native';
+import { BottomTabs } from './components/BottomTabNavigation';
 
 function App(): React.JSX.Element {
-  const Navigation = createStaticNavigation(RootStack);
-
   return (
     <NavigationContainer>
       <BottomTabs />
